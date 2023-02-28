@@ -16,3 +16,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('user/register', function () {
+    return view('welcome');
+});
+
+Route::get('empresa/register', function () {
+    return view('welcome');
+});
+
+Route::get('/user', function () {
+    return view('welcome');
+});
+
+Route::get('/user/oferta/{id}', function () {
+    return view('welcome');
+});
+
+Route::get('/empresa', function () {
+    return view('welcome');
+});
+
+Route::get('/empresa/oferta/create', function () {
+    return view('welcome');
+});
+
+Route::get('/empresa/oferta/{id}', function () {
+    return view('welcome');
+});
+
