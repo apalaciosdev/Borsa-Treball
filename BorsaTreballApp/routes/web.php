@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UsuariosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,21 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-Route::get('user/register', function () {
-    return view('auth.usuario.register');
-});
+// Route::get('user/register', function () {
+//     return view('auth.usuario.register');
+// });
 
 Route::get('empresa/register', function () {
     return view('welcome');
 });
 
+
+Route::get('/', [UsuariosController::class,'login'])->name('auth.usuario.login');
+Route::get('/user/register', [UsuariosController::class,'register'])->name('auth.usuario.register');
+
+
 Route::get('/user', function () {
-    return view('auth.usuario.login');
+    // return view('auth.usuario.login');
 });
 
 Route::get('/user/oferta/{id}', function () {
