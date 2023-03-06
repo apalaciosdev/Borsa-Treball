@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('ofertas', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
-            $table->string('nombreEmpresa', 100);
-            $table->string('nombrePuesto', 100);
-            $table->string('localidadOferta', 100);
+            $table->string('nombreEmpresa', 255);
+            $table->string('nombrePuesto', 255);
+            $table->string('localidadOferta', 255);
             $table->double('salario', null, 2);
             $table->date('fechaPublicacion');
             $table->enum('estadoOferta', ['vigente', 'caducada', 'cubierta']);
