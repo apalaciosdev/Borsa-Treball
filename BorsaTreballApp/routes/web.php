@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('user/register', function () {
-    return view('welcome');
+    return view('auth.usuario.register');
 });
 
 Route::get('empresa/register', function () {
