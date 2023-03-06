@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpresasController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +25,11 @@ Route::get('user/register', function () {
     return view('auth.usuario.register');
 });
 
-Route::get('empresa/register', function () {
-    return view('welcome');
-});
+// Route::get('empresa/register', function () {
+//     return view('welcome');
+// });
+Route::get('empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresa');
+
 
 Route::get('/user', function () {
     return view('auth.usuario.login');
@@ -34,9 +39,11 @@ Route::get('/user/oferta/{id}', function () {
     return view('welcome');
 });
 
-Route::get('/empresa', function () {
-    return view('welcome');
-});
+// Route::get('/empresa', function () {
+//     return view('welcome');
+// });
+Route::get('empresas', [EmpresasController::class,'index'])->name('detalle');
+
 
 Route::get('/empresa/oferta/create', function () {
     return view('welcome');
