@@ -27,7 +27,7 @@ Route::get('empresa/register', function () {
 });
 
 Route::get('/user', function () {
-    return view('welcome');
+    return view('auth.usuario.login');
 });
 
 Route::get('/user/oferta/{id}', function () {
