@@ -5,6 +5,8 @@ use App\Http\Controllers\EmpresasController;
 
 
 
+use App\Http\Controllers\UsuariosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,14 +18,14 @@ use App\Http\Controllers\EmpresasController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-Route::get('user/register', function () {
-    return view('auth.usuario.register');
-});
+// Route::get('user/register', function () {
+//     return view('auth.usuario.register');
+// });
 
 // Route::get('empresa/register', function () {
 //     return view('welcome');
@@ -31,8 +33,13 @@ Route::get('user/register', function () {
 Route::get('empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresa');
 
 
+
+Route::get('/', [UsuariosController::class,'login'])->name('auth.usuario.login');
+Route::get('/user/register', [UsuariosController::class,'register'])->name('auth.usuario.register');
+
+
 Route::get('/user', function () {
-    return view('auth.usuario.login');
+    // return view('auth.usuario.login');
 });
 
 Route::get('/user/oferta/{id}', function () {
