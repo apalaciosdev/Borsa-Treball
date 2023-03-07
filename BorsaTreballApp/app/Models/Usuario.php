@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Usuario extends Model
 {
-    use HasFactory;
+    protected $primaryKey = 'email';
+    public $incrementing = false;
+    protected $keyType = 'string';
 }
