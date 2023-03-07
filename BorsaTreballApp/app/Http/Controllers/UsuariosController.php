@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Usuario;
+use App\Models\Oferta;
+
 
 class UsuariosController extends Controller
 {
@@ -22,6 +24,8 @@ class UsuariosController extends Controller
 
   public function index()
   {
-    return "Índice de usuarios";
+    $usuario = Usuario::where('email','=', session('id'))->get();
+    $oferta = Oferta::all();
+    return view('usuarios.index',['usuario'=>$usuario, 'oferta' => $oferta]);
   }
 }
