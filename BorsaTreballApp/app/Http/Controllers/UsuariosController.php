@@ -40,14 +40,16 @@ class UsuariosController extends Controller
         'cochePropio' => $request->get('cochePropio'),
         'experienciaLaboral' => $request->get('experienciaLaboral')
       ]);
-      $usuario->save(); //Guardamos los cambios
+      $usuario->save();
+      
+      session(['id' => $usuario->email]);
+      session(['rol' => 'usuario']);
+
+      return to_route('indiceUsuarios');
     }
     catch(\Exception $e){
-      echo "Error";
-        // echo $e->getMessage();   // insert query
+      return to_route('login'); //TODO: decidir a donde retorna en caso que haya error al guardar el usuario
+      // return response()->json(['message' => $e->getMessage(), 500]); 
     }
-
-    // Usuario::create($request->all());
-    // return view('usuarios.register');
   }
 }
