@@ -26,7 +26,7 @@ class UsuariosController extends Controller
     return "Índice de usuarios";
   }
 
-  public function añadirUsuario(Request $request)
+  public function saveUser(Request $request)
   {
     try{
       $usuario = new Usuario([
