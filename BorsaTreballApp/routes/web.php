@@ -1,11 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmpresasController;
-
-
-
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\EmpresasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,45 +16,45 @@ use App\Http\Controllers\UsuariosController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [LoginController::class, 'index'])->name('login');
+// Route::get('/', [UsuariosController::class,'login'])->name('paginaPrincipal');
 
+Route::post('/login', [LoginController::class, 'auth']);
 
 // Route::get('user/register', function () {
 //     return view('auth.usuario.register');
 // });
+Route::get('/user/register', [UsuariosController::class,'register'])->name('registrarUsuarios');
 
 // Route::get('empresa/register', function () {
 //     return view('welcome');
 // });
-Route::get('empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresa');
+Route::get('/empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresas');
 
+// Route::get('/user', function () {
+//     return view('auth.usuario.login');
+// });
+Route::get('/user', [UsuariosController::class,'index'])->name('indiceUsuarios');
 
-
-Route::get('/', [UsuariosController::class,'login'])->name('auth.usuario.login');
-Route::get('/user/register', [UsuariosController::class,'register'])->name('auth.usuario.register');
-
-
-Route::get('/user', function () {
-    // return view('auth.usuario.login');
-});
-
-Route::get('/user/oferta/{id}', function () {
-    return view('welcome');
-});
+// Route::get('/user/oferta/{id}', function () {
+//     return view('welcome');
+// });
+Route::get('/user/oferta/{id}', [UsuariosController::class,'showOffer'])->name('mostrarOfertaUsu');
 
 // Route::get('/empresa', function () {
 //     return view('welcome');
 // });
-Route::get('empresas', [EmpresasController::class,'index'])->name('detalle');
+Route::get('/empresas', [EmpresasController::class,'index'])->name('indiceEmpresas');
 
 
-Route::get('/empresa/oferta/create', function () {
-    return view('welcome');
-});
+// Route::get('/empresa/oferta/create', function () {
+//     return view('welcome');
+// });
+Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
 
-Route::get('/empresa/oferta/{id}', function () {
-    return view('welcome');
-});
+// Route::get('/empresa/oferta/{id}', function () {
+//     return view('welcome');
+// });
+Route::get('/empresa/oferta/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
 
+Route::get('/insertPruebas', [EmpresasController::class, 'insertPruebas']);
