@@ -15,7 +15,7 @@ class UsuariosController extends Controller
 
   public function index()
   {
-    $usuario = Usuario::where('email','=', session('id'))->get();
+    $usuario = Usuario::where('email','=', session('id'))->first();
     $oferta = Oferta::all();
     return view('usuarios.index',['usuario'=>$usuario, 'oferta' => $oferta]);
   }
