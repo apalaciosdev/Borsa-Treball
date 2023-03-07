@@ -29,7 +29,6 @@ class EmpresasController extends Controller
 
     public function insertPruebas() {
         $empresa = new Empresa;
-        
         $empresa->nombre = 'Kayla';
         $empresa->direccion = 'dirección';
         $empresa->localidad = 'localidad';

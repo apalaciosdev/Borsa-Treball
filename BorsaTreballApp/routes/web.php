@@ -27,6 +27,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 //     return view('auth.usuario.register');
 // });
 Route::get('/user/register', [UsuariosController::class,'register'])->name('registrarUsuarios');
+Route::post('/user/añadirUsuario', [UsuariosController::class,'saveUser'])->name('añadirUsuario');
 
 // Route::get('empresa/register', function () {
 //     return view('welcome');
