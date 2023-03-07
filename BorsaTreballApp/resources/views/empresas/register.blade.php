@@ -12,7 +12,7 @@
                         Registra tu empresa
                     </div>
                     <div class="card-body" style="padding:30px">
-                        <form method="POST" action="">
+                        <form method="POST" action={{ url('/empresas/añadirEmpresa') }}>
                             {{-- TODO: Protección contra CSRF --}}
                             @csrf
 

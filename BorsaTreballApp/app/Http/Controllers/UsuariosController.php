@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Oferta;
+use DB;
 
 
 class UsuariosController extends Controller
@@ -18,6 +19,14 @@ class UsuariosController extends Controller
     $usuario = Usuario::where('email','=', session('id'))->first();
     $oferta = Oferta::all();
     return view('usuarios.index',['usuario'=>$usuario, 'oferta' => $oferta]);
+  }
+ 
+  public function showOffer($id)
+  {
+    $oferta = Oferta::where('id','=', $id)->get();
+    
+    // $oferta = Oferta::all();
+    return view('usuarios.detalleOferta', array('oferta'=>$oferta));
   }
 
   public function saveUser(Request $request)

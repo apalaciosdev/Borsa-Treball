@@ -33,6 +33,7 @@ Route::post('/user/añadirUsuario', [UsuariosController::class,'saveUser'])->nam
 //     return view('welcome');
 // });
 Route::get('/empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresas');
+Route::post('/empresas/añadirEmpresa', [EmpresasController::class,'añadirEmpresa']);
 
 // Route::get('/user', function () {
 //     return view('auth.usuario.login');
@@ -54,6 +55,7 @@ Route::get('/empresas', [EmpresasController::class,'index'])->name('indiceEmpres
 //     return view('welcome');
 // });
 Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
+Route::post('/empresas/oferta/create', [EmpresasController::class,'crearOferta']);
 
 // Route::get('/empresa/oferta/{id}', function () {
 //     return view('welcome');
