@@ -60,6 +60,6 @@ Route::post('/empresas/oferta/create', [EmpresasController::class,'crearOferta']
 // Route::get('/empresa/oferta/{id}', function () {
 //     return view('welcome');
 // });
-Route::get('/empresa/oferta/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
+Route::get('/empresas/oferta/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
 
 Route::get('/insertPruebas', [EmpresasController::class, 'insertPruebas']);

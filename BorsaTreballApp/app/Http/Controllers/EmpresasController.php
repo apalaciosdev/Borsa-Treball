@@ -27,7 +27,8 @@ class EmpresasController extends Controller
 
     public function showOffer($id)
     {
-        return view('empresas.show', ['id' => $id]);
+        $oferta = Oferta::where('id', '=', $id)->first();
+        return view('empresas.show', ['oferta' => $oferta]);
     }
 
     public function insertPruebas() {

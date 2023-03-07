@@ -18,7 +18,7 @@
 
                             <div class="col-12 form-group mb-3">
                                 <label for="nomEmp">Nombre de la empresa: </label>
-                                <input type="text" name="nomEmp" id="nomEmp" class="form-control" value={{ $nombreEmp->nombre }} disabled>
+                                <input type="text" name="nomEmp" id="nomEmp" class="form-control" value={{ $nombreEmp->nombre }} readonly>
                             </div>
 
                             <div class="col-12 form-group mb-3">
