@@ -6,7 +6,7 @@
     <div class="container">
         {{-- Detalle de empresa --}}
         <span>
-            {{ $empresa }}
+            {{ session('id') }}
         </span>
         <div>
             <p>Nombre de la empresa: </p>

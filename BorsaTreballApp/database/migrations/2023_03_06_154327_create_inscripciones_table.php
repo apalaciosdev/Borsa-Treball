@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->integer('idOferta');
             $table->string('usuario', 255);
+            $table->timestamps();
 
             $table->primary(['idOferta', 'usuario']);
             $table->foreign('idOferta')->references('id')->on('ofertas');

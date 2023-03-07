@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('titulacion', 255);
             $table->boolean('cochePropio');
             $table->longText('experienciaLaboral');
+            $table->timestamps();
 
             $table->primary('email');
         });

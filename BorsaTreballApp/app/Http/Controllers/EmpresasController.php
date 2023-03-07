@@ -13,11 +13,11 @@ class EmpresasController extends Controller
 
     public function index()
     {   
-        // DB::table('empresas')->insert(['nombre' => 'kayla@example.com','direccion' => 'kayla@example.com','localidad' => 'kayla@example.com','provincia' => 'kayla@example.com','telefono' => 123456789,'url' => 'kayla@example.com','email' => 'kayla@example.com','password' => 'kayla@example.com']);
-        // $empresa = DB::table('empresas')->get()->where('email', '=', $email);
-        // return "Índice de las empresas";
-        return Empresa::all();
-        // return view('empresas.detalle', ['empresa' => $empresa]);
+        $email = session('email');
+        // return Empresa::all();
+        // return session('email');
+        return view('empresas.index');
+        // return Empresa::where('email', '=', $email)->get()  ;
     }
 
     public function createOffer()
@@ -31,7 +31,19 @@ class EmpresasController extends Controller
     }
 
     public function insertPruebas() {
-        // DB::table('empresas')->insert(['nombre' => 'Kayla','direccion' => 'dirección','localidad' => 'localidad','provincia' => 'provincia','telefono' => 612345678,'url' => 'url.com','email' => 'hola','password' => 'hola']);
-        // DB::table('usuarios')->insert(['nombre' => 'Kayle','apellidos' => 'apellidos','descripcion' => 'descripcion','email' => 'mundo','password' => 'mundo', 'fechaNacimiento' => '1992-01-26', 'titulacion' => 'titulacion', 'cochePropio' => 1, 'experienciaLaboral' => 'experiencia laboral']);
+        $empresa = new Empresa;
+        
+        $empresa->nombre = 'Kayla';
+        $empresa->direccion = 'dirección';
+        $empresa->localidad = 'localidad';
+        $empresa->provincia = 'provincia';
+        $empresa->telefono = 612345678;
+        $empresa->url = 'http.//www.url.com';
+        $empresa->email = 'empresa2@example.com';
+        $empresa->password = 'empresa2';
+
+        $empresa->save();
+
+        return to_route('login');
     }
 }

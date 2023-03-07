@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('url', 255);
             $table->string('email', 255);
             $table->string('password', 40)->comment('hasheada con sha2');
+            $table->timestamps();
 
             $table->primary('email');
             $table->index('nombre');

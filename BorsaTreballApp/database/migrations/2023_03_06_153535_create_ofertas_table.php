@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('fechaPublicacion');
             $table->enum('estadoOferta', ['vigente', 'caducada', 'cubierta']);
             $table->integer('numeroInscritos');
+            $table->timestamps();
 
             $table->foreign('nombreEmpresa')->references('nombre')->on('empresas');
         });
