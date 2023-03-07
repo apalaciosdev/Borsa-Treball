@@ -19,4 +19,9 @@ class UsuariosController extends Controller
   {
     return view('usuarios.register');
   }
+
+  public function index()
+  {
+    return "Índice de usuarios";
+  }
 }
