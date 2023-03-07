@@ -32,12 +32,13 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <form action="{{ url('/logout') }}" method="POST" style="display:inline">
+                        {{-- <form action="{{ url('/logout') }}" method="POST" class="d-inline">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
                                 Cerrar sesión
                             </button>
-                        </form>
+                        </form> --}}
+                        <a href={{ route('logout') }} class="nav-link">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>

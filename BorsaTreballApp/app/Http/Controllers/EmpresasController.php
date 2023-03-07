@@ -13,11 +13,8 @@ class EmpresasController extends Controller
 
     public function index()
     {   
-        $email = session('email');
-        // return Empresa::all();
-        // return session('email');
-        return view('empresas.index');
-        // return Empresa::where('email', '=', $email)->get()  ;
+        $empresa = Empresa::where('email', '=', session('id'))->first();
+        return view('empresas.index', ['empresa' => $empresa]);
     }
 
     public function createOffer()
