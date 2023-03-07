@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
@@ -23,5 +24,30 @@ class UsuariosController extends Controller
   public function index()
   {
     return "Índice de usuarios";
+  }
+
+  public function añadirUsuario(Request $request)
+  {
+    try{
+      $usuario = new Usuario([
+        'nombre' => $request->get('nombre'),
+        'apellidos' => $request->get('apellidos'),
+        'descripcion' => $request->get('descripcion'),
+        'email' => $request->get('email'),
+        'password' => $request->get('password'),
+        'fechaNacimiento' => $request->get('fechaNacimiento'),
+        'titulacion' => $request->get('titulacion'),
+        'cochePropio' => $request->get('cochePropio'),
+        'experienciaLaboral' => $request->get('experienciaLaboral')
+      ]);
+      $usuario->save(); //Guardamos los cambios
+    }
+    catch(\Exception $e){
+      echo "Error";
+        // echo $e->getMessage();   // insert query
+    }
+
+    // Usuario::create($request->all());
+    // return view('usuarios.register');
   }
 }
