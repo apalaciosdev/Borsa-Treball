@@ -37,8 +37,17 @@
                         </div>
                         <div class="col-2 mb-3">
                             <label for="cochePropio" class="form-label">Coche Propio</label>
+                            @if ( $usuario->cochePropio = 0)
+
                             <input type="text" class="form-control" id="cochePropio" name="cochePropio"
-                                value={{ $usuario->cochePropio }} readonly>
+                                value="No" readonly>
+                            @else
+
+                            <input type="text" class="form-control" id="cochePropio" name="cochePropio"
+                                value="Si" readonly>
+                            
+                            @endif
+                           
                         </div>
                         
                         <div class="col-12 mb-3">
@@ -76,7 +85,8 @@
                                 <li class="list-group-item"> <strong> Salario  :</strong> {{$o -> salario}}</li>
                                 <li class="list-group-item"> <strong> Fecha de Publicacion  :</strong> {{$o -> fechaPublicacion}}</li>
                                 <li class="list-group-item"> <strong> Estado de la oferta  : </strong>{{$o -> estadoOferta}}</li>
-                                <li class="list-group-item"> <strong> Cantidad de Inscritos :</strong> {{$o -> estadoOferta}}</li>
+                                <li class="list-group-item"> <strong> Cantidad de Inscritos :</strong> {{$o -> numeroInscritos}}</li>
+                                <button> <a href="{{url('user/oferta/'.$o -> id .'')}}"> Acceder a la Oferta </a> </button>
                             </ul>
                         </p>
                     </div>

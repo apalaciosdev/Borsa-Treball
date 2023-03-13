@@ -27,8 +27,7 @@ class LoginController extends Controller
             session(['rol' => 'empresa']);
             return to_route('indiceEmpresas');
         } else {
-            return $email . ': ' . $passwd;
-            // return to_route('login');
+            return to_route('login');
         }
     }
 

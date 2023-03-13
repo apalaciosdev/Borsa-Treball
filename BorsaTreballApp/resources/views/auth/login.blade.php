@@ -24,7 +24,8 @@
                             </div>
 
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary w-50">Login</button>
+                                <button type="submit" class="btn btn-primary w-25">Login</button>
+                                <a class="btn btn-success w-25" href="{{ url('user/register') }}">Register</a>
                             </div>
                         </form>
                     </div>
