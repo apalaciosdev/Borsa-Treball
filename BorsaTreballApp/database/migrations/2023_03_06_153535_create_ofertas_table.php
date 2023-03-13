@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('numeroInscritos')->default(0);
             $table->timestamps();
 
-            $table->foreign('nombreEmpresa')->references('nombre')->on('empresas');
+            $table->foreign('nombreEmpresa')->references('nombre')->on('empresas')->cascadeOnUpdate()->restrictOnDelete();
         });
     }
 

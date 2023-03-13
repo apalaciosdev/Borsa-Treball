@@ -1,13 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-
     @include('partials.navbar')
     <div class="container">
         <div class="row mt-3">
             <div class="col-12 card">
                 <div class="card-body">
-                    <form class="row">
+                    <form class="row" method="POST">
+                        @csrf
+                        <input type="hidden" name="lastEmail" value={{ $empresa->email }}>
                         <div class="col-3 mb-3">
                             <label for="nombre" class="form-label">Nombre de la empresa</label>
                             <input type="text" class="form-control" id="nombre" name="nombre"
@@ -43,14 +44,17 @@
                             <input type="text" class="form-control" id="email" name="email"
                                 value={{ $empresa->email }} readonly>
                         </div>
-                        <div class="col-2 offset-10">
-                            <button type="button" class="btn btn-warning w-100">Editar datos</button>
-                            <button type="button" class="d-none btn btn-primary w-100">Guardar datos</button>
+                        <div id="botones" class="col-2 offset-10">
+                            <button type="button" id="editarDatos" class="btn btn-warning w-100">Editar datos</button>
+                            <button type="submit" id="guardarDatos" class="d-none btn btn-primary w-100">Guardar datos</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src=""></script>
+@stop
+
+@section('scripts')
+    <script type="text/javascript" src={{ asset('js/empresas.js') }}></script>
 @stop
