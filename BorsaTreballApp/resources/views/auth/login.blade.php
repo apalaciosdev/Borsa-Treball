@@ -22,11 +22,13 @@
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
-
-                            <div class="form-group text-center">
+                            <div class="form-group text-center"  style="padding-top: 20px">
+                                <a class="btn btn-success w-20" href="{{ url('user/register') }}">Registrar Usuario</a>
                                 <button type="submit" class="btn btn-primary w-25">Login</button>
-                                <a class="btn btn-success w-25" href="{{ url('user/register') }}">Register</a>
+                                <a class="btn btn-warning w-20" href="{{ url('empresas/register') }}">Registrar Empresa</a>
                             </div>
+                           
+                            
                         </form>
                     </div>
                 </div>
