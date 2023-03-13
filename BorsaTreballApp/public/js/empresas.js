@@ -8,4 +8,7 @@ $('#editarDatos').click(function () {
         $(this).attr('placeholder', $(this).val());
         $(this).val('');
     })
+    var form = $(this).closest('form')[0];
+    var input = document.createElement('input');
+
 })

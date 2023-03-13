@@ -74,17 +74,21 @@ class EmpresasController extends Controller
     public function modificarEmpresa(Request $request)
     {
         try {
-            $data = $request->except('_token');
-            $empresa = Empresa::where('email', $request->get('lastEmail'));
-
+            $data = $request->except('_token', 'lastEmail');
+            $array = [];
             foreach ($data as $key => $value) {
                 if (trim($value) != '') {
-                    echo "hola";
-                } 
+                    $array[$key] = trim($value);
+                }
             }
-            echo $request->get('nombre');
-            print_r($request->all());
-            // return to_route('indiceEmpresas');
+            Empresa::where('email', $request->get('lastEmail'))->update($array);
+
+            if (trim($request->get('email')) != '') {
+                session(['id' => trim($request->get('email'))]);
+            }
+
+            // print_r($request->all());
+            return to_route('indiceEmpresas');
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
