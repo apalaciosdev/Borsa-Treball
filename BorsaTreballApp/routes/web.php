@@ -52,7 +52,7 @@ Route::get('/user/oferta/{id}', [UsuariosController::class,'showOffer'])->name('
 //     return view('welcome');
 // });
 Route::get('/empresas', [EmpresasController::class,'index'])->name('indiceEmpresas');
-
+Route::post('/empresas', [EmpresasController::class, 'modificarEmpresa']);
 
 // Route::get('/empresa/oferta/create', function () {
 //     return view('welcome');
