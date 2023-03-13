@@ -86,7 +86,7 @@
                                 <li class="list-group-item"> <strong> Fecha de Publicacion  :</strong> {{$o -> fechaPublicacion}}</li>
                                 <li class="list-group-item"> <strong> Estado de la oferta  : </strong>{{$o -> estadoOferta}}</li>
                                 <li class="list-group-item"> <strong> Cantidad de Inscritos :</strong> {{$o -> numeroInscritos}}</li>
-                                <button> <a href="{{url('user/oferta/'.$o -> id .'')}}"> Acceder a la Oferta </a> </button>
+                                <a class="btn btn-success w-20" href="{{url('user/oferta/'.$o -> id .'')}}"> Acceder a la Oferta </a>
                             </ul>
                         </p>
                     </div>
