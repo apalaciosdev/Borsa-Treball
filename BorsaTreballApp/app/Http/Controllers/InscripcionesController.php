@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Inscripcion;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
@@ -20,8 +22,23 @@ class InscripcionesController extends Controller
   }
   public function addInscription($idOferta)
   {
-    echo $this->checkIfExists($idOferta, session('id')) ? "true" : "false";
-    echo $idOferta, session('id');
-  
+    if($this->checkIfExists($idOferta, session('id'))){ //Si el usuario ya está inscrito a la oferta
+      return to_route('indiceUsuarios');
+    }
+
+    else{ //Si no está inscrito
+      try{
+        $inscripcion = new Inscripcion([
+          'idOferta' => $idOferta,
+          'usuario' =>  session('id')
+        ]);
+        $inscripcion->save();
+        return to_route('indiceUsuarios');
+      }
+      catch(\Exception $e){
+        return to_route('login'); //TODO: decidir a donde retorna en caso que haya error al guardar el usuario
+        // return response()->json(['message' => $e->getMessage(), 500]); 
+      }
+    }
   }
 }
