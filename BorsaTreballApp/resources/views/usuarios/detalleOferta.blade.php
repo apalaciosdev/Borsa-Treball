@@ -13,6 +13,7 @@
             <p>Fecha de publicación: {{ $data->fechaPublicacion }} </p>
             <p>Estado de la oferta: {{ $data->estadoOferta }} </p>
             <p>Número de inscrios: {{ $data->numeroInscritos }} </p>
+            <button><a href="{{ url('añadirInscripcion/'.$data->id) }}">Inscribirse</a></button>
         @endforeach
     </div>  
 
