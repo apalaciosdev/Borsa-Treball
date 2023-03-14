@@ -16,7 +16,8 @@ class EmpresasController extends Controller
     public function index()
     {
         $empresa = Empresa::where('email', '=', session('id'))->first();
-        return view('empresas.index', ['empresa' => $empresa]);
+        $ofertas = Oferta::where('nombreEmpresa', '=', $empresa->nombre)->get();
+        return view('empresas.index', ['empresa' => $empresa, 'ofertas' => $ofertas]);
     }
 
     public function createOffer()

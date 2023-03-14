@@ -14,7 +14,7 @@
                             <input type="text" class="form-control" id="nombre" name="nombre"
                                 value='{{ $empresa->nombre }}' readonly>
                         </div>
-                        <div class="col-7 mb-3">
+                        <div class="col-5 mb-3">
                             <label for="direccion" class="form-label">Dirección de la empresa</label>
                             <input type="text" class="form-control" id="direccion" name="direccion"
                                 value='{{ $empresa->direccion }}' readonly>
@@ -44,13 +44,29 @@
                             <input type="text" class="form-control" id="email" name="email"
                                 value='{{ $empresa->email }}' readonly>
                         </div>
-                        <div id="botones" class="col-2 offset-10">
+                        <div class="col-2 offset-10">
                             <button type="button" id="editarDatos" class="btn btn-warning w-100">Editar datos</button>
-                            <button type="submit" id="guardarDatos" class="d-none btn btn-primary w-100">Guardar datos</button>
+                            <button type="submit" class="d-none btn btn-primary w-100">Guardar datos</button>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="row mt-5">
+            @foreach ($ofertas as $oferta)
+                <div class="col-12 card mt-2">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title">{{ $oferta->nombrePuesto }}</h4>
+                            <p>Estado de la oferta: {{ ucfirst($oferta->estadoOferta) }}</p>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $oferta->localidadOferta }}</h6>
+                        <p class="card-text">Descripción del puesto de trabajo:<br>{{ $oferta->descripcion }}<br>Salario:
+                            {{ $oferta->salario }}<br>Número de inscritos: {{ $oferta->numeroInscritos }}</p>
+                        <a href="{{ route('mostrarOfertaEmp', $oferta->id) }}" class="text-decoration-none">Editar oferta <i class="bi bi-arrow-right-circle"></i></a>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 @stop
