@@ -20,10 +20,21 @@ class InscripcionesController extends Controller
     }
     return false;
   }
+
+
+  public function updateContadorInscripciones($idOferta, $type){
+    $numeroInscritos = intval(DB::table('ofertas')->select('numeroInscritos')->first()->numeroInscritos);
+    $type == 'sum' ? $numeroInscritos += 1 : $numeroInscritos -= 1;
+    
+    DB::table('ofertas') -> where('id', $idOferta) -> update(['numeroInscritos' => $numeroInscritos]);
+  }
+
   public function addInscription($idOferta)
   {
     if($this->checkIfExists($idOferta, session('id'))){ //Si el usuario ya está inscrito a la oferta
-      return to_route('indiceUsuarios');
+      DB::table('inscripciones')->where('idOferta', $idOferta)->delete();
+      $this -> updateContadorInscripciones($idOferta, 'rest');
+      return to_route('indiceUsuarios');                                                                                                                                                                                                                                                                                                                                 
     }
 
     else{ //Si no está inscrito
@@ -33,6 +44,8 @@ class InscripcionesController extends Controller
           'usuario' =>  session('id')
         ]);
         $inscripcion->save();
+
+        $this -> updateContadorInscripciones($idOferta, 'sum');
         return to_route('indiceUsuarios');
       }
       catch(\Exception $e){
