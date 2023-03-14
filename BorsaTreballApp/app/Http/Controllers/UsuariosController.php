@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Oferta;
 use DB;
-
+use App\Http\Controllers\InscripcionesController;
 
 class UsuariosController extends Controller
 {
@@ -24,9 +24,12 @@ class UsuariosController extends Controller
   public function showOffer($id)
   {
     $oferta = Oferta::where('id','=', $id)->get();
+
+    //Comprobamos si el usuario ya esta inscrito a la oferta (devuelve true o false).
+    $inscripcionesController = new InscripcionesController();
+    $estaInscrito = $inscripcionesController->checkIfExists($id, session('id'));
     
-    // $oferta = Oferta::all();
-    return view('usuarios.detalleOferta', array('oferta'=>$oferta));
+    return view('usuarios.detalleOferta', array('oferta'=>$oferta, 'estaInscrito'=> $estaInscrito));
   }
 
   public function saveUser(Request $request)

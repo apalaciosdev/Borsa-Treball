@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\EmpresasController;
+use App\Http\Controllers\InscripcionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/user/register', [UsuariosController::class,'register'])->name('registrarUsuarios');
 Route::post('/user/añadirUsuario', [UsuariosController::class,'saveUser'])->name('añadirUsuario');
 
+Route::get('/añadirInscripcion/{id}', [InscripcionesController::class,'addInscription'])->name('añadirInscripcion');
+
 // Route::get('empresa/register', function () {
 //     return view('welcome');
 // });
@@ -49,7 +52,7 @@ Route::get('/user/oferta/{id}', [UsuariosController::class,'showOffer'])->name('
 //     return view('welcome');
 // });
 Route::get('/empresas', [EmpresasController::class,'index'])->name('indiceEmpresas');
-
+Route::post('/empresas', [EmpresasController::class, 'modificarEmpresa']);
 
 // Route::get('/empresa/oferta/create', function () {
 //     return view('welcome');

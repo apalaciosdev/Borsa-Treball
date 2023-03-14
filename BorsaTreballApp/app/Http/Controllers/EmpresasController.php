@@ -14,9 +14,10 @@ class EmpresasController extends Controller
     }
 
     public function index()
-    {   
+    {
         $empresa = Empresa::where('email', '=', session('id'))->first();
-        return view('empresas.index', ['empresa' => $empresa]);
+        $ofertas = Oferta::where('nombreEmpresa', '=', $empresa->nombre)->get();
+        return view('empresas.index', ['empresa' => $empresa, 'ofertas' => $ofertas]);
     }
 
     public function createOffer()
@@ -31,7 +32,8 @@ class EmpresasController extends Controller
         return view('empresas.show', ['oferta' => $oferta]);
     }
 
-    public function insertPruebas() {
+    public function insertPruebas()
+    {
         $empresa = new Empresa;
         $empresa->nombre = 'Kayla';
         $empresa->direccion = 'dirección';
@@ -59,7 +61,7 @@ class EmpresasController extends Controller
             $empresa->url = $request->get('pagCor');
             $empresa->email = $request->get('email');
             $empresa->password = $request->get('pass');
-    
+
             $empresa->save(); //Guardamos los cambios
         } catch (\Exception $e) {
             echo "Error<br>";
@@ -68,6 +70,30 @@ class EmpresasController extends Controller
 
         // Usuario::create($request->all());
         // return view('usuarios.register');
+    }
+
+    public function modificarEmpresa(Request $request)
+    {
+        try {
+            $data = $request->except('_token', 'lastEmail');
+            $array = [];
+            foreach ($data as $key => $value) {
+                if (trim($value) != '') {
+                    $array[$key] = trim($value);
+                }
+            }
+            Empresa::where('email', $request->get('lastEmail'))->update($array);
+
+            if (trim($request->get('email')) != '') {
+                session(['id' => trim($request->get('email'))]);
+            }
+
+            // print_r($request->all());
+            return to_route('indiceEmpresas');
+        } catch (\Exception $e) {
+            echo "Error<br>";
+            echo $e->getMessage();
+        }
     }
 
     public function crearOferta(Request $request)
@@ -79,7 +105,7 @@ class EmpresasController extends Controller
             $oferta->localidadOferta = $request->get('localidad');
             $oferta->descripcion = $request->get('descr');
             $oferta->salario = $request->get('salario');
-    
+
             $oferta->save(); //Guardamos los cambios
         } catch (\Exception $e) {
             echo "Error<br>";

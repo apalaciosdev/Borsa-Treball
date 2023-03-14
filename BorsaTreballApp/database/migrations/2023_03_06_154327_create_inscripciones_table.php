@@ -17,8 +17,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->primary(['idOferta', 'usuario']);
-            $table->foreign('idOferta')->references('id')->on('ofertas');
-            $table->foreign('usuario')->references('email')->on('usuarios');
+            $table->foreign('idOferta')->references('id')->on('ofertas')->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreign('usuario')->references('email')->on('usuarios')->cascadeOnUpdate()->restrictOnDelete();
         });
     }
 
