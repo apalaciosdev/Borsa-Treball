@@ -13,7 +13,12 @@
             <p>Fecha de publicación: {{ $data->fechaPublicacion }} </p>
             <p>Estado de la oferta: {{ $data->estadoOferta }} </p>
             <p>Número de inscrios: {{ $data->numeroInscritos }} </p>
-            <button><a href="{{ url('añadirInscripcion/'.$data->id) }}">Inscribirse</a></button>
+
+            @if ($estaInscrito) 
+                <button type="button" class="btn btn-danger"><a href="{{ url('añadirInscripcion/'.$data->id) }}">Cancelar inscripción</a></button>
+            @else
+                <button type="button" class="btn btn-primary"><a href="{{ url('añadirInscripcion/'.$data->id) }}">Inscribirse</a></button>
+            @endif
         @endforeach
     </div>  
 
