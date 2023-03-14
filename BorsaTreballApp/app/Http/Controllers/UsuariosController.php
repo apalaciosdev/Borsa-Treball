@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Oferta;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\InscripcionesController;
 
 class UsuariosController extends Controller

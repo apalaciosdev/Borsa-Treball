@@ -31,7 +31,7 @@ class InscripcionesController extends Controller
 
   public function addInscription($idOferta)
   {
-    if($this->checkIfExists($idOferta, session('id'))){ //Si el usuario ya está inscrito a la oferta
+    if($this->checkIfExists($idOferta, session('idUserDB'))){ //Si el usuario ya está inscrito a la oferta
       DB::table('inscripciones')->where('idOferta', $idOferta)->delete();
       $this -> updateContadorInscripciones($idOferta, 'rest');
       return to_route('indiceUsuarios');                                                                                                                                                                                                                                                                                                                                 
@@ -41,7 +41,7 @@ class InscripcionesController extends Controller
       try{
         $inscripcion = new Inscripcion([
           'idOferta' => $idOferta,
-          'usuario' =>  session('id')
+          'usuario' =>  session('idUserDB')
         ]);
         $inscripcion->save();
 

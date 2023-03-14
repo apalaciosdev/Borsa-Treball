@@ -18,7 +18,8 @@ class LoginController extends Controller
         $email = $request->input('email');
         $passwd = $request->input('password');
 
-        session(['id' => $email]);
+        session(['id' => $email, 'idUserDB' => $this->getUserIdDB($email)]);
+   
 
         if (DB::table('usuarios')->where([['email', '=', $email],['password', '=', $passwd]])->count() > 0) {
             session(['rol' => 'usuario']);
@@ -29,6 +30,12 @@ class LoginController extends Controller
         } else {
             return to_route('login');
         }
+    }
+
+    
+    public function getUserIdDB($email)
+    {
+        return DB::table('usuarios')->where('email', '=', $email)->value('id');
     }
 
     public function logout() {
