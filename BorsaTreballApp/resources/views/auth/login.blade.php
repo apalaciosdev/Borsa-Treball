@@ -5,30 +5,25 @@
         <div class="row mt-5">
             <div class="offset-md-3 col-md-6">
                 <div class="card">
-                    {{-- <div class="card-header text-center">
-                    Inicio de sessión
-                </div> --}}
                     <div class="card-body">
                         <p class="text-center">Inicio de sessión</p>
                         <form method="POST" action="{{ url('/login') }}">
                             @csrf
-
                             <div class="form-group mb-2">
                                 <label for="email">Email</label>
                                 <input type="text" name="email" id="email" class="form-control">
                             </div>
-
                             <div class="form-group mb-2">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
-                            <div class="form-group text-center"  style="padding-top: 20px">
-                                <a class="btn btn-success w-20" href="{{ url('user/register') }}">Registrar Usuario</a>
-                                <button type="submit" class="btn btn-primary w-25">Login</button>
-                                <a class="btn btn-warning w-20" href="{{ url('empresas/register') }}">Registrar Empresa</a>
+                            <div class="form-group text-center mb-3">
+                                <button type="submit" class="btn btn-primary w-50">Login</button>
                             </div>
-                           
-                            
+                            <div class="d-flex align-items-center flex-column">
+                                <a class="text-success mb-2" href="{{ url('user/register') }}">Registrar Usuario</a>
+                                <a class="text-success" href="{{ url('empresas/register') }}">Registrar Empresa</a>
+                            </div>
                         </form>
                     </div>
                 </div>

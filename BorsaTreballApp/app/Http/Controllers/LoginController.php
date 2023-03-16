@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 // use App\Http\Controllers\EmpresasController;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Empresa;
+use App\Models\Usuario;
 
 class LoginController extends Controller
 {
@@ -18,13 +19,13 @@ class LoginController extends Controller
         $email = $request->input('email');
         $passwd = $request->input('password');
 
-        session(['id' => $email, 'idUserDB' => $this->getUserIdDB($email)]);
+        session(['id' => $email]);
    
 
-        if (DB::table('usuarios')->where([['email', '=', $email],['password', '=', $passwd]])->count() > 0) {
+        if (Usuario::where([['email', '=', $email],['password', '=', $passwd]])->count() > 0) {
             session(['rol' => 'usuario']);
             return to_route('indiceUsuarios');
-        } else if (DB::table('empresas')->where([['email', '=', $email], ['password', '=', $passwd]])->count() > 0) {
+        } else if (Empresa::where([['email', '=', $email], ['password', '=', $passwd]])->count() > 0) {
             session(['rol' => 'empresa']);
             return to_route('indiceEmpresas');
         } else {
@@ -35,7 +36,7 @@ class LoginController extends Controller
     
     public function getUserIdDB($email)
     {
-        return DB::table('usuarios')->where('email', '=', $email)->value('id');
+        return Usuario::where('email', '=', $email)->value('id');
     }
 
     public function logout() {

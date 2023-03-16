@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row mt-4">
             @foreach ($ofertas as $oferta)
                 <div class="col-12 card mt-2">
                     <div class="card-body">
