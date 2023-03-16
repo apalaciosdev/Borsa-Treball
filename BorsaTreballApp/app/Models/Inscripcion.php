@@ -9,6 +9,7 @@ class Inscripcion extends Model
 {
     protected $table = 'inscripciones';
     protected $primaryKey = 'idOferta';
-    protected $fillable = ['idOferta', 'usuario'];
+    public $timestamps = false;
+    protected $fillable = ['idOferta', 'idUsuario'];
     public $incrementing = false;
 }

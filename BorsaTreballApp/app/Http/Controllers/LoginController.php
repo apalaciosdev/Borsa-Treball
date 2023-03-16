@@ -33,11 +33,6 @@ class LoginController extends Controller
         }
     }
 
-    
-    public function getUserIdDB($email)
-    {
-        return Usuario::where('email', '=', $email)->value('id');
-    }
 
     public function logout() {
         auth()->logout();

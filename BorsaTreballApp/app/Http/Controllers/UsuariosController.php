@@ -24,13 +24,15 @@ class UsuariosController extends Controller
   public function showOffer($id)
   {
     $oferta = Oferta::where('id','=', $id)->get();
+    $userId = Usuario::where('email', '=', session('id'))->value('id');
 
     //Comprobamos si el usuario ya esta inscrito a la oferta (devuelve true o false).
     $inscripcionesController = new InscripcionesController();
-    $estaInscrito = $inscripcionesController->checkIfExists($id, session('id'));
+    $estaInscrito = $inscripcionesController->checkIfExists($id, $userId);
     
     return view('usuarios.detalleOferta', array('oferta'=>$oferta, 'estaInscrito'=> $estaInscrito));
   }
+
 
   public function saveUser(Request $request)
   {

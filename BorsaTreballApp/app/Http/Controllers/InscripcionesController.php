@@ -15,10 +15,14 @@ class InscripcionesController extends Controller
 
   //Función que comprueba si el usuario está inscrito a la oferta
   public function checkIfExists($idOferta, $user){
-    if(DB::table('inscripciones')->where([['idOferta', '=', $idOferta],['usuario', '=', $user]])->count() > 0){
+    if(DB::table('inscripciones')->where([['idOferta', '=', $idOferta],['idUsuario', '=', $user]])->count() > 0){
       return true;
     }
     return false;
+  }
+
+  public function getUserIdDB($email){
+      return Usuario::where('email', '=', $email)->value('id');
   }
 
 
@@ -29,9 +33,10 @@ class InscripcionesController extends Controller
     DB::table('ofertas') -> where('id', $idOferta) -> update(['numeroInscritos' => $numeroInscritos]);
   }
 
-  public function addInscription($idOferta)
-  {
-    if($this->checkIfExists($idOferta, session('idUserDB'))){ //Si el usuario ya está inscrito a la oferta
+  public function addInscription($idOferta){
+    $idUser = $this->getUserIdDB(session('id'));
+
+    if($this->checkIfExists($idOferta, $idUser)){ //Si el usuario ya está inscrito a la oferta
       DB::table('inscripciones')->where('idOferta', $idOferta)->delete();
       $this -> updateContadorInscripciones($idOferta, 'rest');
       return to_route('indiceUsuarios');                                                                                                                                                                                                                                                                                                                                 
@@ -39,9 +44,10 @@ class InscripcionesController extends Controller
 
     else{ //Si no está inscrito
       try{
+        echo session('idUserDB');
         $inscripcion = new Inscripcion([
           'idOferta' => $idOferta,
-          'usuario' =>  session('idUserDB')
+          'idUsuario' => $idUser
         ]);
         $inscripcion->save();
 
@@ -49,7 +55,8 @@ class InscripcionesController extends Controller
         return to_route('indiceUsuarios');
       }
       catch(\Exception $e){
-        return to_route('login'); //TODO: decidir a donde retorna en caso que haya error al guardar el usuario
+        echo $e;
+        // return to_route('login'); //TODO: decidir a donde retorna en caso que haya error al guardar el usuario
         // return response()->json(['message' => $e->getMessage(), 500]); 
       }
     }
