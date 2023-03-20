@@ -6,7 +6,7 @@
             <div class="offset-md-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-center">Registro</h4>
+                        <h4 class="card-title text-center">Registro Usuario</h4>
                         <form method="POST" action="{{ url('/user/añadirUsuario') }}" class="row">
                             @csrf
                             <div class="col-5 mb-2">
@@ -46,7 +46,7 @@
                                     <option value="0">NO</option>
                                 </select>
                             </div>
-                            <div class="col-12 mb-2">
+                            <div class="col-12 mb-3">
                                 <label for="experienciaLaboral">Experiencia Laboral</label>
                                 <textarea name="experienciaLaboral" id="experienciaLaboral" class="form-control" rows="3" required></textarea>
                             </div>
