@@ -62,7 +62,7 @@
                                 value={{ $usuario->experienciaLaboral }} readonly></textarea>
                         </div>
                         <div class="col-2 offset-10">
-                            <button type="button" class="btn btn-warning w-100">Editar datos</button>
+                            <button type="button" id="editarDatos" class="btn btn-warning w-100">Editar datos</button>
                             <button type="button" class="d-none btn btn-primary w-100">Guardar datos</button>
                         </div>
                         
@@ -96,4 +96,7 @@
         </div>
     </div>
 
+@stop
+@section('scripts')
+    <script type="text/javascript" src={{ asset('js/usuarios.js') }}></script>
 @stop
