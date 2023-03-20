@@ -15,7 +15,7 @@ class InscripcionesController extends Controller
 
   //Función que comprueba si el usuario está inscrito a la oferta
   public function checkIfExists($idOferta, $user){
-    if(DB::table('inscripciones')->where([['idOferta', '=', $idOferta],['idUsuario', '=', $user]])->count() > 0){
+    if(DB::table('inscripciones')->where([['idOferta', '=', $idOferta],['usuario', '=', $user]])->count() > 0){
       return true;
     }
     return false;
@@ -34,7 +34,7 @@ class InscripcionesController extends Controller
   }
 
   public function addInscription($idOferta){
-    $idUser = $this->getUserIdDB(session('id'));
+    $idUser = session('id');
 
     if($this->checkIfExists($idOferta, $idUser)){ //Si el usuario ya está inscrito a la oferta
       DB::table('inscripciones')->where('idOferta', $idOferta)->delete();
@@ -45,10 +45,16 @@ class InscripcionesController extends Controller
     else{ //Si no está inscrito
       try{
         echo session('idUserDB');
-        $inscripcion = new Inscripcion([
-          'idOferta' => $idOferta,
-          'idUsuario' => $idUser
-        ]);
+
+
+        // Usando el modelo creamos un nuevo registro de Empresa
+        $inscripcion = new Inscripcion;
+
+        // Asignamos los valores a cada campo del registro
+        $inscripcion->idOferta = $idOferta;
+        $inscripcion->usuario = session('id');
+
+        //Guardamos los cambios
         $inscripcion->save();
 
         $this -> updateContadorInscripciones($idOferta, 'sum');
