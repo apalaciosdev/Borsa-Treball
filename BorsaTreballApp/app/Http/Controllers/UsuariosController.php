@@ -33,7 +33,35 @@ class UsuariosController extends Controller
     return view('usuarios.detalleOferta', array('oferta'=>$oferta, 'estaInscrito'=> $estaInscrito));
   }
 
+  public function update(Request $request){
+    try {
+      // Recogemos todos los campos del formulario excepto los especificados
+      $data = $request->except('_token', 'lastEmail');
 
+      // Por cada campo que se haya modificado se añade a un array así evitamos hacer
+      // updates enteros para reducir la carga de servidor
+      $array = [];
+      foreach ($data as $key => $value) {
+          if (trim($value) != '') {
+              $array[$key] = trim($value);
+          }
+      }
+
+      // Una vez sabemos los campos cambiados, modificamos el registro de la empresa
+      Usuario::where('email', $request->get('lastEmail'))->update($array);
+
+      // Si la empresa ha cambiado su email, modificamos la sesión para que concuerde
+      if (trim($request->get('email')) != '') {
+          session(['id' => trim($request->get('email'))]);
+      }
+
+      // Redirigimos al índice de las empresas también
+      return to_route('indiceUsuarios');
+  } catch (\Exception $e) {
+      echo "Error<br>";
+      echo $e->getMessage();
+  }
+  }
   public function saveUser(Request $request)
   {
     try{
