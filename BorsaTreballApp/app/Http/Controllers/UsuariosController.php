@@ -24,7 +24,7 @@ class UsuariosController extends Controller
   public function showOffer($id)
   {
     $oferta = Oferta::where('id','=', $id)->get();
-    $userId = Usuario::where('email', '=', session('id'))->value('id');
+    $userId = Usuario::where('email', '=', session('id'))->value('email');
 
     //Comprobamos si el usuario ya esta inscrito a la oferta (devuelve true o false).
     $inscripcionesController = new InscripcionesController();
