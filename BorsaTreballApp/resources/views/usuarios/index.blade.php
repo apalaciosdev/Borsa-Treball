@@ -75,27 +75,20 @@
             </div>
         </div>
 
-        <div class="card-group col-12 col-md-12" style="margin-top: 50px">
-            @foreach ($oferta as $o)
-            <div class=" col-12 col-md-4" >
-                <div class="card">
-
+        <div class="row mt-4">
+            @foreach ($oferta as $oferta)
+                <div class="col-12 card mt-2">
                     <div class="card-body">
-                        <h4 class="card-title">{{$o -> nombrePuesto}}</h4>
-                        <p class="card-text">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"> <strong> Nombre de la Empresa :</strong>  {{$o -> nombreEmpresa}}</li>
-                                <li class="list-group-item"> <strong> Localidad :</strong> {{$o -> localidadOferta}}</li>
-                                <li class="list-group-item"> <strong> Salario  :</strong> {{$o -> salario}}</li>
-                                <li class="list-group-item"> <strong> Fecha de Publicacion  :</strong> {{$o -> fechaPublicacion}}</li>
-                                <li class="list-group-item"> <strong> Estado de la oferta  : </strong>{{$o -> estadoOferta}}</li>
-                                <li class="list-group-item"> <strong> Cantidad de Inscritos :</strong> {{$o -> numeroInscritos}}</li>
-                                <a class="btn btn-success w-20" href="{{url('user/oferta/'.$o -> id .'')}}"> Acceder a la Oferta </a>
-                            </ul>
-                        </p>
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title">{{ $oferta->nombrePuesto }}</h4>
+                            <p>Estado de la oferta: {{ ucfirst($oferta->estadoOferta) }}</p>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $oferta->localidadOferta }}</h6>
+                        <p class="card-text">Descripción del puesto de trabajo:<br>{{ $oferta->descripcion }}<br>Salario:
+                            {{ $oferta->salario }}<br>Número de inscritos: {{ $oferta->numeroInscritos }}</p>
+                        <a  href="{{url('user/oferta/'.$oferta -> id .'')}}" class="text-decoration-none"> Acceder a la Oferta <i class="bi bi-arrow-right-circle"></i></a>
                     </div>
-              </div>
-            </div>
+                </div>
             @endforeach
         </div>
     </div>
