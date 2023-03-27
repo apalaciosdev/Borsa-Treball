@@ -16,6 +16,19 @@
                         </a>
                     </li>
                 </ul>
+                
+                @if (session('rol') == 'empresa')
+                    <ul class="navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <form action="{{ route('crearOferta') }}" method="GET" style="display:inline">
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
+                                    Nueva Oferta
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                @endif
 
                 <ul class="navbar-nav navbar-right">
                     <li class="nav-item">
