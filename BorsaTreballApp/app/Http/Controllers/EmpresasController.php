@@ -132,5 +132,7 @@ class EmpresasController extends Controller
             echo "Error<br>";
             echo $e->getMessage();
         }
+
+        return to_route('indiceEmpresas');
     }
 }

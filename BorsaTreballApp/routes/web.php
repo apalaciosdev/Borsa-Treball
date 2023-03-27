@@ -49,8 +49,6 @@ Route::post('/empresas/añadirEmpresa', [EmpresasController::class,'añadirEmpre
 
 Route::post('/empresas', [EmpresasController::class, 'modificarEmpresa']);
 
-// Route::get('/empresas/oferta/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
-
 Route::get('/empresas/oferta/show/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
 
 Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
