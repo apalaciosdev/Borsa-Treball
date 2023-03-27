@@ -72,7 +72,7 @@ class EmpresasController extends Controller
             //Guardamos los cambios
             $empresa->save();
             return to_route('indiceEmpresas');
-            
+
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
