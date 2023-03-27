@@ -119,7 +119,7 @@ class EmpresasController extends Controller
             $oferta = new Oferta;
 
             // Asignamos todos los valores a los campos del registro
-            $oferta->nombreEmpresa = $request->get('nomEmp');
+            $oferta->nombreEmpresa = $request->get('nombreEmp');
             $oferta->nombrePuesto = $request->get('nomPue');
             $oferta->localidadOferta = $request->get('localidad');
             $oferta->descripcion = $request->get('descr');
