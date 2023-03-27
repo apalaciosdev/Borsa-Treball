@@ -55,6 +55,8 @@ Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])
 
 Route::post('/empresas/oferta/create', [EmpresasController::class,'crearOferta']);
 
+Route::post('/empresas/user/detalle', [EmpresasController::class,'showUserDetalle'])->name('mostrarUsuarioInscrito');
+
 // other 
 Route::get('/insertPruebas', [EmpresasController::class, 'insertPruebas']);
 

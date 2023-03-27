@@ -50,7 +50,7 @@ class EmpresasController extends Controller
     public function showOffer($id)
     {
 
-        $users = Usuario::select('nombre','apellidos')->join('inscripciones','email','=','usuario')->where('idOferta','=',$id)->get();
+        $users = Usuario::select('nombre','apellidos','email')->join('inscripciones','email','=','usuario')->where('idOferta','=',$id)->get();
         
 
         // Recogemos la oferta seleccionada y la pasamos como parámetro
@@ -139,5 +139,10 @@ class EmpresasController extends Controller
         }
 
         return to_route('indiceEmpresas');
+    }
+
+    public function showUserDetalle(Request $request) {
+        $user = Usuario::where('email','=',$request->get('userEmail'))->first();
+        return view('empresas.userInscrito', ['usuario' => $user]);
     }
 }

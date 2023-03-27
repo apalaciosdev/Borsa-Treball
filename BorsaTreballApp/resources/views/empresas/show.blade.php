@@ -32,7 +32,7 @@
                         <div class="col-3 mb-3">
                             <label for="salario" class="form-label">Salario</label>
                             <input type="number" class="form-control" id="salario" name="salario"
-                            value="{{ $oferta->salario }}" readonly>
+                                value="{{ $oferta->salario }}" readonly>
                         </div>
                         <div class="col-3 mb-3">
                             <label for="data" class="form-label">Data de publicación</label>
@@ -52,29 +52,36 @@
                             <textarea id="descripcion" class="form-control" readonly>{{ $oferta->descripcion }}</textarea>
                         </div>
                         <div class="col-2 offset-10 botones">
-                            <button type="button" id="editarDatosOferta" class="btn btn-warning w-100">Editar oferta</button>
+                            <button type="button" id="editarDatosOferta" class="btn btn-warning w-100">Editar
+                                oferta</button>
                             <button type="submit" class="d-none btn btn-primary w-100">Guardar oferta</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="row mt-4"> 
+        <div class="row mt-4">
             <table class="table table-responsive table-light table-hover table-striped">
                 <thead class="table-secondary">
                     <tr>
                         <th>Nombre</th>
                         <th>Apellidos</th>
-                        {{-- <th>Email</th> --}}
+                        <th>Detalle</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($usuarios as $user)
-                    <tr>
-                        <td>{{ $user->nombre }}</td>
-                        <td>{{ $user->apellidos }}</td>
-                        {{-- <td>{{ $user-> }}</td> --}}
-                    </tr>
+                        <tr>
+                            <td>{{ $user->nombre }}</td>
+                            <td>{{ $user->apellidos }}</td>
+                            <td>
+                                <form action="{{ route('mostrarUsuarioInscrito') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="userEmail" value="{{ $user->email }}">
+                                    <button type="submit" class="btn btn-primary">Mostrar detalle</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
