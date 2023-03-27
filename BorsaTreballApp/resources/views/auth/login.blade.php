@@ -6,7 +6,7 @@
             <div class="offset-md-3 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <p class="text-center">Inicio de sessión</p>
+                        <p class="text-center">Inicio de sesión</p>
                         <form method="POST" action="{{ url('/login') }}">
                             @csrf
                             <div class="form-group mb-2">
