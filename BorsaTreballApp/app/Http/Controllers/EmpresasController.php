@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use App\Models\Oferta;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class EmpresasController extends Controller
@@ -48,11 +49,15 @@ class EmpresasController extends Controller
 
     public function showOffer($id)
     {
+
+        $users = Usuario::select('nombre','apellidos')->join('inscripciones','email','=','usuario')->where('idOferta','=',$id)->get();
+        
+
         // Recogemos la oferta seleccionada y la pasamos como parámetro
         $empresa = Empresa::where('email', '=', session('id'))->first();
         $oferta = Oferta::where('id', '=', $id)->first();
         // return view('empresas.show', ['oferta' => $oferta]);
-        return view('empresas.show', ['oferta' => $oferta, 'empresa' => $empresa]);
+        return view('empresas.show', ['oferta' => $oferta, 'empresa' => $empresa, 'usuarios' => $users]);
     }
 
     public function añadirEmpresa(Request $request)

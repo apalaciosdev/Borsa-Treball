@@ -60,21 +60,24 @@
             </div>
         </div>
         <div class="row mt-4"> 
-            
-            {{-- @foreach ($ofertas as $oferta)
-                <div class="col-12 card mt-2">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title">{{ $oferta->nombrePuesto }}</h4>
-                            <p>Estado de la oferta: {{ ucfirst($oferta->estadoOferta) }}</p>
-                        </div>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $oferta->localidadOferta }}</h6>
-                        <p class="card-text">Descripción del puesto de trabajo:<br>{{ $oferta->descripcion }}<br>Salario:
-                            {{ $oferta->salario }}<br>Número de inscritos: {{ $oferta->numeroInscritos }}</p>
-                        <a href="{{ route('mostrarOfertaEmp', $oferta->id) }}" class="text-decoration-none">Editar oferta <i class="bi bi-arrow-right-circle"></i></a>
-                    </div>
-                </div>
-            @endforeach --}}
+            <table class="table table-responsive table-light table-hover table-striped">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        {{-- <th>Email</th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($usuarios as $user)
+                    <tr>
+                        <td>{{ $user->nombre }}</td>
+                        <td>{{ $user->apellidos }}</td>
+                        {{-- <td>{{ $user-> }}</td> --}}
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @stop
