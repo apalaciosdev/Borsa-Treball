@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-2 mb-3">
                             <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea readonly>{{ $ofera->descripcion }}</textarea>
+                            <textarea readonly>{{ $oferta->descripcion }}</textarea>
                         </div>
                         <div class="col-4 mb-3">
                             <label for="salario" class="form-label">Salario</label>
@@ -41,7 +41,7 @@
                         <div class="col-4 mb-3">
                             <label for="data" class="form-label">Data de publicación</label>
                             <input type="date" class="form-control" id="data" name="data"
-                                value='{{ $empresa->email }}' readonly>
+                                value='{{ $oferta->fechaPublicacion }}' readonly>
                         </div>
                         <div class="col-4 mb-3">
                             <label for="estado" class="form-label">Estado</label>
@@ -52,12 +52,29 @@
                             </select>
                         </div>
                         <div class="col-2 botones">
-                            <button type="button" id="editarOferta" class="btn btn-warning w-100">Editar oferta</button>
+                            <button type="button" id="editarDatosOferta" class="btn btn-warning w-100">Editar oferta</button>
                             <button type="submit" class="d-none btn btn-primary w-100">Guardar oferta</button>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="row mt-4"> 
+            
+            {{-- @foreach ($ofertas as $oferta)
+                <div class="col-12 card mt-2">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title">{{ $oferta->nombrePuesto }}</h4>
+                            <p>Estado de la oferta: {{ ucfirst($oferta->estadoOferta) }}</p>
+                        </div>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $oferta->localidadOferta }}</h6>
+                        <p class="card-text">Descripción del puesto de trabajo:<br>{{ $oferta->descripcion }}<br>Salario:
+                            {{ $oferta->salario }}<br>Número de inscritos: {{ $oferta->numeroInscritos }}</p>
+                        <a href="{{ route('mostrarOfertaEmp', $oferta->id) }}" class="text-decoration-none">Editar oferta <i class="bi bi-arrow-right-circle"></i></a>
+                    </div>
+                </div>
+            @endforeach --}}
         </div>
     </div>
 @stop

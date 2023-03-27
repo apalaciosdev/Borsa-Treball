@@ -38,20 +38,4 @@ $('#editarDatosOferta').click(function () {
         $(this).attr('placeholder', $(this).val());
         $(this).val('');
     })
-    var form = $(this).closest('form')[0];
-    var div = document.createElement('div');
-    div.classList.add('col-2');
-    div.classList.add('mb-3');
-    var label = document.createElement('label');
-    label.innerHTML = 'Contraseña';
-    label.classList.add('form-label');
-    var input = document.createElement('input');
-    input.type = 'password';
-    input.name = 'password';
-    input.placeholder = 'Nueva contraseña';
-    input.classList.add('form-control');
-
-    div.appendChild(label);
-    div.appendChild(input);
-    form.insertBefore(div, form.querySelector('div.botones'));
 })

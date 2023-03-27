@@ -51,7 +51,7 @@ Route::post('/empresas', [EmpresasController::class, 'modificarEmpresa']);
 
 // Route::get('/empresas/oferta/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
 
-Route::get('/empresas/oferta/show/{id}', [EmpresasController::class,'createOffer'])->name('mostrarOfertaEmp');
+Route::get('/empresas/oferta/show/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
 
 Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
 
@@ -59,3 +59,4 @@ Route::post('/empresas/oferta/create', [EmpresasController::class,'crearOferta']
 
 // other 
 Route::get('/insertPruebas', [EmpresasController::class, 'insertPruebas']);
+

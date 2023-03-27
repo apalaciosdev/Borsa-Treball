@@ -49,8 +49,10 @@ class EmpresasController extends Controller
     public function showOffer($id)
     {
         // Recogemos la oferta seleccionada y la pasamos como parámetro
+        $empresa = Empresa::where('email', '=', session('id'))->first();
         $oferta = Oferta::where('id', '=', $id)->first();
-        return view('empresas.show', ['oferta' => $oferta]);
+        // return view('empresas.show', ['oferta' => $oferta]);
+        return view('empresas.show', ['oferta' => $oferta, 'empresa' => $empresa]);
     }
 
     public function añadirEmpresa(Request $request)
