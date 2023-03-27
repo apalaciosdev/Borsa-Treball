@@ -9,15 +9,10 @@
         @if( true || Auth::check() )
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {{ Request::is('catalog') && ! Request::is('catalog/create')? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/catalog')}}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{session('rol')=='usuario' ? url('/user') : url('/empresas')}}">
                             <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-                            Catálogo
-                        </a>
-                    </li>
-                    <li class="nav-item {{  Request::is('catalog/create') ? 'active' : ''}}">
-                        <a class="nav-link" href="{{url('/catalog/create')}}">
-                            <span>&#10010;</span> Nueva película
+                            Home
                         </a>
                     </li>
                 </ul>
@@ -27,18 +22,9 @@
                         <form action="{{ url('/user') }}" method="GET" style="display:inline">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
-                                Login
+                                Cerrar Sesión
                             </button>
                         </form>
-                    </li>
-                    <li class="nav-item">
-                        {{-- <form action="{{ url('/logout') }}" method="POST" class="d-inline">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-link nav-link" style="display:inline;cursor:pointer">
-                                Cerrar sesión
-                            </button>
-                        </form> --}}
-                        <a href={{ route('logout') }} class="nav-link">Cerrar sesión</a>
                     </li>
                 </ul>
             </div>
