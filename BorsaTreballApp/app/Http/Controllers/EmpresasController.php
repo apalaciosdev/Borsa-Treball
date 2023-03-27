@@ -15,9 +15,12 @@ class EmpresasController extends Controller
 
     public function index()
     {
-        // Si no hay sesión iniciada, nos envía al login
-        if (session('id') == NULL) {
+        if (session('id') == NULL) { // Si no hay sesión iniciada, nos envía al login
             return to_route('login');
+        } else { // Si hay sesión iniciada pero no pertenece a una empresa redirige al login
+            if (Empresa::where('email', '=', session('id'))->count() == 0) {
+                return to_route('login');
+            }
         }
 
         // Recogemos la empresa que ha iniciado la sesión y las ofertas que tiene
@@ -29,9 +32,12 @@ class EmpresasController extends Controller
 
     public function createOffer()
     {
-        // Si no hay sesión iniciada, nos envía al login
-        if (session('id') == NULL) {
+        if (session('id') == NULL) { // Si no hay sesión iniciada, nos envía al login
             return to_route('login');
+        } else { // Si hay sesión iniciada pero no pertenece a una empresa redirige al login
+            if (Empresa::where('email', '=', session('id'))->count() == 0) {
+                return to_route('login');
+            }
         }
 
         // Recogemos las empresa que crea la oferta y la pasamos como parámetro
@@ -62,8 +68,7 @@ class EmpresasController extends Controller
             $empresa->email = $request->get('email');
             $empresa->password = $request->get('pass');
 
-            //Guardamos los cambios
-            $empresa->save();
+            $empresa->save(); //Guardamos el nuevo registro
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
@@ -93,7 +98,7 @@ class EmpresasController extends Controller
                 session(['id' => trim($request->get('email'))]);
             }
 
-            // Redirigimos al índice de las empresas también
+            // Redirigimos al índice de las empresas
             return to_route('indiceEmpresas');
         } catch (\Exception $e) {
             echo "Error<br>";
@@ -114,8 +119,7 @@ class EmpresasController extends Controller
             $oferta->descripcion = $request->get('descr');
             $oferta->salario = $request->get('salario');
 
-            //Guardamos el registro
-            $oferta->save();
+            $oferta->save(); // Guardamos el nuevo registro
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();

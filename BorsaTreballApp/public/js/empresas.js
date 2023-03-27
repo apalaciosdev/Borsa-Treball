@@ -23,5 +23,5 @@ $('#editarDatos').click(function () {
 
     div.appendChild(label);
     div.appendChild(input);
-    form.insertBefore(div, form.querySelector('div:last-child'));
+    form.insertBefore(div, form.querySelector('div.botones'));
 })

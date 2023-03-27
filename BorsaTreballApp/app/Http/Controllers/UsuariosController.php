@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Oferta;
@@ -16,21 +17,36 @@ class UsuariosController extends Controller
 
   public function index()
   {
-    $usuario = Usuario::where('email','=', session('id'))->first();
+    // BIEL
+    // Si no hay sesión iniciada redirige al login
+    if (session('id') == NULL) {
+      return to_route('login');
+    } else { // Si hay sesión iniciada pero no pertenece a un usuario redirige al login
+      if (Usuario::where('email', '=', session('id'))->count() == 0) {
+        return to_route('login');
+      }
+    }
+
+    $usuario = Usuario::where('email', '=', session('id'))->first();
     $oferta = Oferta::all();
-    return view('usuarios.index',['usuario'=>$usuario, 'oferta' => $oferta]);
+    return view('usuarios.index', ['usuario' => $usuario, 'oferta' => $oferta]);
   }
- 
+
   public function showOffer($id)
   {
+<<<<<<< Updated upstream
     $oferta = Oferta::where('id','=', $id)->get();
     $userId = Usuario::where('email', '=', session('id'))->value('email');
+=======
+    $oferta = Oferta::where('id', '=', $id)->get();
+    $userId = Usuario::where('email', '=', session('id'))->value('id');
+>>>>>>> Stashed changes
 
     //Comprobamos si el usuario ya esta inscrito a la oferta (devuelve true o false).
     $inscripcionesController = new InscripcionesController();
     $estaInscrito = $inscripcionesController->checkIfExists($id, $userId);
-    
-    return view('usuarios.detalleOferta', array('oferta'=>$oferta, 'estaInscrito'=> $estaInscrito));
+
+    return view('usuarios.detalleOferta', array('oferta' => $oferta, 'estaInscrito' => $estaInscrito));
   }
 
   public function update(Request $request){
@@ -64,7 +80,7 @@ class UsuariosController extends Controller
   }
   public function saveUser(Request $request)
   {
-    try{
+    try {
       $usuario = new Usuario([
         'nombre' => $request->get('nombre'),
         'apellidos' => $request->get('apellidos'),
@@ -77,13 +93,12 @@ class UsuariosController extends Controller
         'experienciaLaboral' => $request->get('experienciaLaboral')
       ]);
       $usuario->save();
-      
+
       session(['id' => $usuario->email]);
       session(['rol' => 'usuario']);
 
       return to_route('indiceUsuarios');
-    }
-    catch(\Exception $e){
+    } catch (\Exception $e) {
       return to_route('login'); //TODO: decidir a donde retorna en caso que haya error al guardar el usuario
       // return response()->json(['message' => $e->getMessage(), 500]); 
     }
