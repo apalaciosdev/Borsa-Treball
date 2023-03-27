@@ -34,13 +34,8 @@ class UsuariosController extends Controller
 
   public function showOffer($id)
   {
-<<<<<<< Updated upstream
     $oferta = Oferta::where('id','=', $id)->get();
     $userId = Usuario::where('email', '=', session('id'))->value('email');
-=======
-    $oferta = Oferta::where('id', '=', $id)->get();
-    $userId = Usuario::where('email', '=', session('id'))->value('id');
->>>>>>> Stashed changes
 
     //Comprobamos si el usuario ya esta inscrito a la oferta (devuelve true o false).
     $inscripcionesController = new InscripcionesController();
