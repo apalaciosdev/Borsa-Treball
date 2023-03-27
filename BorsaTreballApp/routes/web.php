@@ -17,54 +17,43 @@ use App\Http\Controllers\InscripcionesController;
 |
 */
 
+// Inicio
+// Si no ponemos nada en la url nos manda al controlador 'LoginController' a la funcion index
 Route::get('/', [LoginController::class, 'index'])->name('login');
-// Route::get('/', [UsuariosController::class,'login'])->name('paginaPrincipal');
-
-Route::post('/login', [LoginController::class, 'auth']);
-
-Route::post('/user/userUpdate', [UsuariosController::class, 'update']);
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('user/register', function () {
-//     return view('auth.usuario.register');
-// });
-Route::get('/user/register', [UsuariosController::class,'register'])->name('registrarUsuarios');
-Route::post('/user/añadirUsuario', [UsuariosController::class,'saveUser'])->name('añadirUsuario');
+Route::post('/login', [LoginController::class, 'auth']);
 
-Route::get('/añadirInscripcion/{id}', [InscripcionesController::class,'addInscription'])->name('añadirInscripcion');
 
-// Route::get('empresa/register', function () {
-//     return view('welcome');
-// });
-Route::get('/empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresas');
-Route::post('/empresas/añadirEmpresa', [EmpresasController::class,'añadirEmpresa']);
-
-// Route::get('/user', function () {
-//     return view('auth.usuario.login');
-// });
+// USUARIO
 Route::get('/user', [UsuariosController::class,'index'])->name('indiceUsuarios');
 
-// Route::get('/user/oferta/{id}', function () {
-//     return view('welcome');
-// });
-Route::get('/user/oferta/{id}', [UsuariosController::class,'showOffer'])->name('mostrarOfertaUsu');
+Route::get('/user/register', [UsuariosController::class,'register'])->name('registrarUsuarios');
 
-// Route::get('/empresa', function () {
-//     return view('welcome');
-// });
+Route::post('/user/añadirUsuario', [UsuariosController::class,'saveUser'])->name('añadirUsuario');
+
+Route::post('/user/userUpdate', [UsuariosController::class, 'update']);
+
+Route::get('/user/oferta/{id}', [UsuariosController::class,'showOffer'])->name('mostrarOfertaUsu');
+// Para incribirte a la oferta
+Route::get('/añadirInscripcion/{id}', [InscripcionesController::class,'addInscription'])->name('añadirInscripcion');
+
+
+// EMPRESA
 Route::get('/empresas', [EmpresasController::class,'index'])->name('indiceEmpresas');
+
+Route::get('/empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresas');
+
+Route::post('/empresas/añadirEmpresa', [EmpresasController::class,'añadirEmpresa']);
+
 Route::post('/empresas', [EmpresasController::class, 'modificarEmpresa']);
 
-// Route::get('/empresa/oferta/create', function () {
-//     return view('welcome');
-// });
-Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
-Route::post('/empresas/oferta/create', [EmpresasController::class,'crearOferta']);
-
-// Route::get('/empresa/oferta/{id}', function () {
-//     return view('welcome');
-// });
 Route::get('/empresas/oferta/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
 
+Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
+
+Route::post('/empresas/oferta/create', [EmpresasController::class,'crearOferta']);
+
+// other 
 Route::get('/insertPruebas', [EmpresasController::class, 'insertPruebas']);

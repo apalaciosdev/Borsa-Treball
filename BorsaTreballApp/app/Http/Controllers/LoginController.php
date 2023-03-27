@@ -21,7 +21,6 @@ class LoginController extends Controller
 
         session(['id' => $email]);
    
-
         if (Usuario::where([['email', '=', $email],['password', '=', $passwd]])->count() > 0) {
             session(['rol' => 'usuario']);
             return to_route('indiceUsuarios');

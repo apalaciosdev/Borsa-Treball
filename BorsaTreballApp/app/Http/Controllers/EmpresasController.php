@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class EmpresasController extends Controller
 {
+    // Funcion que retorna la vista de registro de empresas
     public function register()
     {
         return view('empresas.register');
@@ -64,10 +65,14 @@ class EmpresasController extends Controller
 
             //Guardamos los cambios
             $empresa->save();
+            return to_route('indiceEmpresas');
+            
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
+            return to_route('login');
         }
+        
     }
 
     public function modificarEmpresa(Request $request)

@@ -11,11 +11,11 @@
                             @csrf
                             <div class="form-group mb-2">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <input type="text" name="email" id="email" class="form-control" required>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control" required>
                             </div>
                             <div class="form-group text-center mb-3">
                                 <button type="submit" class="btn btn-primary w-50">Login</button>
