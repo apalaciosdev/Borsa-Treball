@@ -32,10 +32,13 @@ $('#editarDatosOferta').click(function () {
     $(this).parent().find('button').each(function () {
         $(this).toggleClass('d-none');
     })
-    var $inputs = $(this).closest('form').find(':input').filter('input:not([type=hidden])');
+    var $inputs = $(this).closest('form').find(':input:not([disabled])');
     $inputs.each(function () {
-        $(this).attr('readonly', false);
-        $(this).attr('placeholder', $(this).val());
-        $(this).val('');
+        console.log($(this).attr('id'));
+        if ($.inArray($(this).attr('id'), ['puesto','salario','descripcion'])) {
+            $(this).attr('readonly', false);
+            $(this).attr('placeholder', $(this).val());
+            $(this).val('');
+        }
     })
 })

@@ -60,32 +60,34 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <table class="table table-responsive table-light table-hover table-striped">
-                <thead class="table-secondary">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Detalle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($usuarios as $user)
+        @if ($oferta->numeroInscritos > 0)
+            <div class="row mt-4">
+                <table class="table table-responsive table-light table-hover table-striped">
+                    <thead class="table-secondary">
                         <tr>
-                            <td>{{ $user->nombre }}</td>
-                            <td>{{ $user->apellidos }}</td>
-                            <td>
-                                <form action="{{ route('mostrarUsuarioInscrito') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="userEmail" value="{{ $user->email }}">
-                                    <button type="submit" class="btn btn-primary">Mostrar detalle</button>
-                                </form>
-                            </td>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Detalle</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($usuarios as $user)
+                            <tr>
+                                <td>{{ $user->nombre }}</td>
+                                <td>{{ $user->apellidos }}</td>
+                                <td>
+                                    <form action="{{ route('mostrarUsuarioInscrito') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="userEmail" value="{{ $user->email }}">
+                                        <button type="submit" class="btn btn-primary">Mostrar detalle</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 @stop
 
