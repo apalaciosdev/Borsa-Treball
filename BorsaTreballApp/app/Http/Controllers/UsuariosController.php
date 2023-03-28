@@ -17,7 +17,6 @@ class UsuariosController extends Controller
 
   public function index()
   {
-    // BIEL
     // Si no hay sesión iniciada redirige al login
     if (session('id') == NULL) {
       return to_route('login');
@@ -28,8 +27,15 @@ class UsuariosController extends Controller
     }
 
     $usuario = Usuario::where('email', '=', session('id'))->first();
-    $oferta = Oferta::all();
-    return view('usuarios.index', ['usuario' => $usuario, 'oferta' => $oferta]);
+    $ofertas = Oferta::all();
+
+    //Comprueba en cada oferta si el usuario está inscrito o no y crea un atributo nuevo para guardar el resultado
+    $inscripcionesController = new InscripcionesController();
+    foreach ($ofertas as $oferta) {
+      $oferta->estaInscrito = $inscripcionesController->checkIfExists($oferta->id, session('id'));
+    }
+
+    return view('usuarios.index', ['usuario' => $usuario, 'oferta' => $ofertas]);
   }
 
   public function showOffer($id)
@@ -94,8 +100,7 @@ class UsuariosController extends Controller
 
       return to_route('indiceUsuarios');
     } catch (\Exception $e) {
-      return to_route('login'); //TODO: decidir a donde retorna en caso que haya error al guardar el usuario
-      // return response()->json(['message' => $e->getMessage(), 500]); 
+      return to_route('login'); 
     }
   }
 }
