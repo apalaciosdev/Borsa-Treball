@@ -32,11 +32,11 @@ $('#editarDatosOferta').click(function () {
     $(this).parent().find('button').each(function () {
         $(this).toggleClass('d-none');
     })
-    var $inputs = $(this).closest('form').find(':input:not([disabled])');
+    var $inputs = $(this).closest('form').find(':input:not([disabled]):not([type=hidden])');
     $inputs.each(function () {
         $(this).attr('readonly', false);
         $(this).attr('placeholder', $(this).val());
         $(this).val('');
     })
-    $(this).closest('form').find(':input#estado').attr('disabled', false);
+    $(this).closest('form').find(':input#estadoOferta').attr('disabled', false);
 })

@@ -146,7 +146,7 @@ class EmpresasController extends Controller
         return view('empresas.userInscrito', ['usuario' => $user]);
     }
 
-    public function modOffer(Request $request, $id)
+    public function modOffer(Request $request)
     {
         try {
             // Recogemos todos los campos del formulario excepto los especificados
@@ -156,16 +156,17 @@ class EmpresasController extends Controller
             // updates enteros para reducir la carga de servidor
             $array = [];
             foreach ($data as $key => $value) {
+                echo $key . ': ' . $value;
                 if (trim($value) != '') {
                     $array[$key] = trim($value);
                 }
             }
 
             // Una vez sabemos los campos cambiados, modificamos el registro de la empresa
-            Oferta::where('id', '=', $id)->update($array);
+            Oferta::where('id', '=', $request->get('id'))->update($array);
 
             // Redirigimos a la información de la oferta
-            return to_route('mostrarOfertaEmp');
+            return to_route('mostrarOfertaEmp', $request->get('id'));
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();

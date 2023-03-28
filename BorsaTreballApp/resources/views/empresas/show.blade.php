@@ -8,9 +8,10 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('modificarOferta') }}" class="row">
                         @csrf
+                        <input type="hidden" name="id" value="{{ $oferta->id }}">
                         <div class="col-3 mb-3">
-                            <label for="nombre" class="form-label">Nombre de la empresa</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre"
+                            <label for="nombreEmpresa" class="form-label">Nombre de la empresa</label>
+                            <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa"
                                 value="{{ $empresa->nombre }}" disabled>
                         </div>
                         <div class="col-6 mb-3">
@@ -24,8 +25,8 @@
                                 value="{{ $empresa->localidad }}" disabled>
                         </div>
                         <div class="col-2 mb-3">
-                            <label for="puesto" class="form-label">Puesto ofertado</label>
-                            <input type="text" class="form-control" id="puesto" name="puesto"
+                            <label for="nombrePuesto" class="form-label">Puesto ofertado</label>
+                            <input type="text" class="form-control" id="nombrePuesto" name="nombrePuesto"
                                 value="{{ $oferta->nombrePuesto }}" readonly>
                         </div>
                         <div class="col-3 mb-3">
@@ -34,13 +35,13 @@
                                 value="{{ $oferta->salario }}" readonly>
                         </div>
                         <div class="col-3 mb-3">
-                            <label for="data" class="form-label">Data de publicación</label>
-                            <input type="date" class="form-control" id="data" name="data"
+                            <label for="fechaPublicacion" class="form-label">Fecha de publicación</label>
+                            <input type="date" class="form-control" id="fechaPublicacion" name="fechaPublicacion"
                                 value="{{ $oferta->fechaPublicacion }}" disabled>
                         </div>
                         <div class="col-4 mb-3">
-                            <label for="estado" class="form-label">Estado</label>
-                            <select id="estado" class="form-select" name="estado" disabled>
+                            <label for="estadoOferta" class="form-label">Estado de la oferta</label>
+                            <select id="estadoOferta" class="form-select" name="estadoOferta" disabled>
                                 @foreach (['vigente', 'caducada', 'cubierta'] as $estado)
                                     <option value="{{ $estado }}" @if ($estado == $oferta->estadoOferta) selected @endif>
                                         {{ ucfirst($estado) }}</option>
