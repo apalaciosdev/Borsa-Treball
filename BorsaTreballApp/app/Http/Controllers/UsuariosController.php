@@ -34,9 +34,10 @@ class UsuariosController extends Controller
     foreach ($ofertas as $oferta) {
       $oferta->estaInscrito = $inscripcionesController->checkIfExists($oferta->id, session('id'));
     }
-
+ 
     return view('usuarios.index', ['usuario' => $usuario, 'oferta' => $ofertas]);
   }
+
 
   public function showOffer($id)
   {
@@ -47,6 +48,7 @@ class UsuariosController extends Controller
     $inscripcionesController = new InscripcionesController();
     $estaInscrito = $inscripcionesController->checkIfExists($id, $userId);
 
+    //Retornamos la vista con los campos oferta (donde vienen los datos de la oferta) y el campo donde se ve si el usuario está inscrito o no
     return view('usuarios.detalleOferta', array('oferta' => $oferta, 'estaInscrito' => $estaInscrito));
   }
 
@@ -65,10 +67,7 @@ class UsuariosController extends Controller
       }
 
       // Una vez sabemos los campos cambiados, modificamos el registro de la empresa
-      if (count($array) > 0) {
-        # code...
-        Usuario::where('email', '=', $request->get('lastEmail'))->update($array);
-      }
+      Usuario::where('email', $request->get('lastEmail'))->update($array);
 
       // Si la empresa ha cambiado su email, modificamos la sesión para que concuerde
       if (trim($request->get('email')) != '') {
@@ -85,6 +84,7 @@ class UsuariosController extends Controller
   public function saveUser(Request $request)
   {
     try {
+      //Recogemos los parámetros que recibimos por el request
       $usuario = new Usuario([
         'nombre' => $request->get('nombre'),
         'apellidos' => $request->get('apellidos'),
@@ -96,11 +96,13 @@ class UsuariosController extends Controller
         'cochePropio' => $request->get('cochePropio'),
         'experienciaLaboral' => $request->get('experienciaLaboral')
       ]);
-      $usuario->save();
+      $usuario->save();  //Lo enviamos a la DB
 
+      //Despúes añadimos tanto el mail como el rol a la sesión
       session(['id' => $usuario->email]);
       session(['rol' => 'usuario']);
 
+      //Finalmente redirigimos al home de usuarios
       return to_route('indiceUsuarios');
     } catch (\Exception $e) {
       return to_route('login'); 
