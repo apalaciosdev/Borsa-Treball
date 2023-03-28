@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title text-center">Registro Empresa</h4>
-                        <form method="POST" action={{ url('/empresas/añadirEmpresa') }} class="row">
+                        <form method="POST" class="row">
                             @csrf
                             <div class="col-8 mb-2">
                                 <label for="nomEmp">Nombre de la empresa: </label>
