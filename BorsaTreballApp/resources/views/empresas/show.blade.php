@@ -6,13 +6,12 @@
         <div class="row mt-3">
             <div class="col-12 card">
                 <div class="card-body">
-                    <form class="row" method="POST">
+                    <form method="POST" action="{{ route('modificarOferta') }}" class="row">
                         @csrf
-                        <input type="hidden" name="lastEmail" value="{{ $empresa->email }}"">
                         <div class="col-3 mb-3">
                             <label for="nombre" class="form-label">Nombre de la empresa</label>
                             <input type="text" class="form-control" id="nombre" name="nombre"
-                                value="{{ $empresa->nombre }}"" disabled>
+                                value="{{ $empresa->nombre }}" disabled>
                         </div>
                         <div class="col-6 mb-3">
                             <label for="direccion" class="form-label">Dirección de la empresa</label>
@@ -37,14 +36,15 @@
                         <div class="col-3 mb-3">
                             <label for="data" class="form-label">Data de publicación</label>
                             <input type="date" class="form-control" id="data" name="data"
-                                value="{{ $oferta->fechaPublicacion }}" readonly>
+                                value="{{ $oferta->fechaPublicacion }}" disabled>
                         </div>
                         <div class="col-4 mb-3">
                             <label for="estado" class="form-label">Estado</label>
-                            <select id="estado" class="form-select" name="estado">
-                                <option value="vigente">Vigente</option>
-                                <option value="caducada">Caducada</option>
-                                <option value="cubierta">Cubierta</option>
+                            <select id="estado" class="form-select" name="estado" disabled>
+                                @foreach (['vigente', 'caducada', 'cubierta'] as $estado)
+                                    <option value="{{ $estado }}" @if ($estado == $oferta->estadoOferta) selected @endif>
+                                        {{ ucfirst($estado) }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-12 mb-3">
@@ -62,31 +62,32 @@
         </div>
         @if ($oferta->numeroInscritos > 0)
             <div class="row mt-4">
-                <table class="table table-responsive table-light table-hover table-striped">
-                    <thead class="table-secondary">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Detalle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($usuarios as $user)
+                <div class="mx-auto w-75">
+                    <table class="table text-center table-light table-hover table-striped overflow-hidden rounded-3">
+                        <thead class="table-secondary">
                             <tr>
-                                <td>{{ $user->nombre }}</td>
-                                <td>{{ $user->apellidos }}</td>
-                                <td>
-                                    <form action="{{ route('mostrarUsuarioInscrito') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="userEmail" value="{{ $user->email }}">
-                                        <button type="submit" class="btn btn-primary">Mostrar detalle</button>
-                                    </form>
-                                </td>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Detalle</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach ($usuarios as $user)
+                                <tr>
+                                    <td>{{ $user->nombre }}</td>
+                                    <td>{{ $user->apellidos }}</td>
+                                    <td>
+                                        <form action="{{ route('mostrarUsuarioInscrito') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="userEmail" value="{{ $user->email }}">
+                                            <button type="submit" class="btn btn-primary">Mostrar detalle</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
         @endif
     </div>
 @stop

@@ -85,7 +85,15 @@
                         <h6 class="card-subtitle mb-2 text-muted">{{ $oferta->localidadOferta }}</h6>
                         <p class="card-text">Descripción del puesto de trabajo:<br>{{ $oferta->descripcion }}<br>Salario:
                             {{ $oferta->salario }}<br>Número de inscritos: {{ $oferta->numeroInscritos }}</p>
-                        <a  href="{{url('user/oferta/'.$oferta -> id .'')}}" class="text-decoration-none"> Acceder a la Oferta <i class="bi bi-arrow-right-circle"></i></a>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a  href="{{url('user/oferta/'.$oferta -> id .'')}}" class="text-decoration-none"> Acceder a la Oferta <i class="bi bi-arrow-right-circle"></i></a>
+                            @if (  $oferta->estaInscrito )
+                                <a  class="text-decoration-none" style="color:#28A745"> Inscrito</a>
+                            @else
+                                <a  class="text-decoration-none" style="color:#17A2B8"> No inscrito</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
             @endforeach

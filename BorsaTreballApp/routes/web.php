@@ -43,13 +43,15 @@ Route::get('/añadirInscripcion/{id}', [InscripcionesController::class,'addInscr
 // EMPRESA
 Route::get('/empresas', [EmpresasController::class,'index'])->name('indiceEmpresas');
 
-Route::get('/empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresas');
-
-Route::post('/empresas/añadirEmpresa', [EmpresasController::class,'añadirEmpresa']);
-
 Route::post('/empresas', [EmpresasController::class, 'modificarEmpresa']);
 
+Route::get('/empresas/register', [EmpresasController::class,'register'])->name('registrarEmpresas');
+
+Route::post('/empresas/register', [EmpresasController::class,'añadirEmpresa']);
+
 Route::get('/empresas/oferta/show/{id}', [EmpresasController::class,'showOffer'])->name('mostrarOfertaEmp');
+
+Route::post('/empresas/oferta/modify', [EmpresasController::class, 'modOffer'])->name('modificarOferta');
 
 Route::get('/empresas/oferta/create', [EmpresasController::class,'createOffer'])->name('crearOferta');
 

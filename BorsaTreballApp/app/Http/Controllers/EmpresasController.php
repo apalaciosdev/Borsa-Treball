@@ -50,8 +50,8 @@ class EmpresasController extends Controller
     public function showOffer($id)
     {
 
-        $users = Usuario::select('nombre','apellidos','email')->join('inscripciones','email','=','usuario')->where('idOferta','=',$id)->get();
-        
+        $users = Usuario::select('nombre', 'apellidos', 'email')->join('inscripciones', 'email', '=', 'usuario')->where('idOferta', '=', $id)->get();
+
 
         // Recogemos la oferta seleccionada y la pasamos como parámetro
         $empresa = Empresa::where('email', '=', session('id'))->first();
@@ -79,13 +79,11 @@ class EmpresasController extends Controller
             //Guardamos los cambios
             $empresa->save();
             return to_route('indiceEmpresas');
-
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
             return to_route('login');
         }
-        
     }
 
     public function modificarEmpresa(Request $request)
@@ -116,6 +114,7 @@ class EmpresasController extends Controller
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
+            return to_route('login');
         }
     }
 
@@ -141,8 +140,35 @@ class EmpresasController extends Controller
         return to_route('indiceEmpresas');
     }
 
-    public function showUserDetalle(Request $request) {
-        $user = Usuario::where('email','=',$request->get('userEmail'))->first();
+    public function showUserDetalle(Request $request)
+    {
+        $user = Usuario::where('email', '=', $request->get('userEmail'))->first();
         return view('empresas.userInscrito', ['usuario' => $user]);
+    }
+
+    public function modOffer(Request $request, $id)
+    {
+        try {
+            // Recogemos todos los campos del formulario excepto los especificados
+            $data = $request->except('_token');
+
+            // Por cada campo que se haya modificado se añade a un array así evitamos hacer
+            // updates enteros para reducir la carga de servidor
+            $array = [];
+            foreach ($data as $key => $value) {
+                if (trim($value) != '') {
+                    $array[$key] = trim($value);
+                }
+            }
+
+            // Una vez sabemos los campos cambiados, modificamos el registro de la empresa
+            Oferta::where('id', '=', $id)->update($array);
+
+            // Redirigimos a la información de la oferta
+            return to_route('mostrarOfertaEmp');
+        } catch (\Exception $e) {
+            echo "Error<br>";
+            echo $e->getMessage();
+        }
     }
 }

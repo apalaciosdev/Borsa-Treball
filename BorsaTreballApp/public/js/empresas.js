@@ -34,11 +34,9 @@ $('#editarDatosOferta').click(function () {
     })
     var $inputs = $(this).closest('form').find(':input:not([disabled])');
     $inputs.each(function () {
-        console.log($(this).attr('id'));
-        if ($.inArray($(this).attr('id'), ['puesto','salario','descripcion'])) {
-            $(this).attr('readonly', false);
-            $(this).attr('placeholder', $(this).val());
-            $(this).val('');
-        }
+        $(this).attr('readonly', false);
+        $(this).attr('placeholder', $(this).val());
+        $(this).val('');
     })
+    $(this).closest('form').find(':input#estado').attr('disabled', false);
 })
