@@ -17,7 +17,6 @@ class UsuariosController extends Controller
 
   public function index()
   {
-    // BIEL
     // Si no hay sesión iniciada redirige al login
     if (session('id') == NULL) {
       return to_route('login');
@@ -59,7 +58,10 @@ class UsuariosController extends Controller
       }
 
       // Una vez sabemos los campos cambiados, modificamos el registro de la empresa
-      Usuario::where('email', $request->get('lastEmail'))->update($array);
+      if (count($array) > 0) {
+        # code...
+        Usuario::where('email', '=', $request->get('lastEmail'))->update($array);
+      }
 
       // Si la empresa ha cambiado su email, modificamos la sesión para que concuerde
       if (trim($request->get('email')) != '') {
