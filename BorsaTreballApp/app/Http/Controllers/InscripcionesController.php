@@ -15,7 +15,7 @@ class InscripcionesController extends Controller
 
   //Función que comprueba si el usuario está inscrito a la oferta
   public function checkIfExists($idOferta, $user){
-    if(DB::table('inscripciones')->where([['idOferta', '=', $idOferta],['usuario', '=', $user]])->count() > 0){
+    if(Inscripcion::where([['idOferta', '=', $idOferta],['usuario', '=', $user]])->count() > 0){
       return true;
     }
     return false;
@@ -27,10 +27,10 @@ class InscripcionesController extends Controller
 
 
   public function updateContadorInscripciones($idOferta, $type){
-    $numeroInscritos = intval(DB::table('ofertas')->select('numeroInscritos')->first()->numeroInscritos);
+    $numeroInscritos = intval(Oferta::where('id', '=', $idOferta)->first()->numeroInscritos);
     $type == 'sum' ? $numeroInscritos += 1 : $numeroInscritos -= 1;
     
-    DB::table('ofertas') -> where('id', $idOferta) -> update(['numeroInscritos' => $numeroInscritos]);
+   Oferta::where('id', $idOferta) -> update(['numeroInscritos' => $numeroInscritos]);
   }
 
   public function addInscription($idOferta){

@@ -14,46 +14,46 @@
                     <div class="col-4 mb-3">
                         <label for="nombre" class="form-label">Empresa</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->nombreEmpresa }} readonly >
+                            value="{{ $data->nombreEmpresa }}" readonly >
                     </div>
                     <div class="col-4 mb-3">
                         <label for="nombre" class="form-label">Lugar del puesto</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->nombrePuesto }} readonly >
+                            value="{{ $data->nombrePuesto }}" readonly >
                     </div>
                     <div class="col-4 mb-3">
                         <label for="nombre" class="form-label">Localidad</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->localidadOferta }} readonly >
+                            value="{{ $data->localidadOferta }}" readonly >
                     </div>
                     <div class="col-3 mb-3">
                         <label for="nombre" class="form-label">Salario</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->salario }} readonly >
+                            value="{{ $data->salario }}" readonly >
                     </div>
                     <div class="col-3 mb-3">
                         <label for="nombre" class="form-label">Fecha de publicación</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->fechaPublicacion }} readonly >
+                            value="{{ $data->fechaPublicacion }}" readonly >
                     </div>
                     
                     <div class="col-3 mb-3">
                         <label for="nombre" class="form-label">Estado de la oferta</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->estadoOferta }} readonly >
+                            value="{{ $data->estadoOferta }}" readonly >
                     </div>
                     <div class="col-3 mb-3">
                         <label for="nombre" class="form-label">Número de inscritos</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
-                            value={{ $data->numeroInscritos }} readonly >
+                            value="{{ $data->numeroInscritos }}" readonly >
                     </div>
                     @if ($estaInscrito) 
                     <div class="col-6 mb-3">
-                    <button type="button" class="btn btn-danger" ><a href="{{ url('añadirInscripcion/'.$data->id) }}" class="link-light">Cancelar inscripción</a></button>
+                    <button type="button" class="btn btn-danger" ><a href="{{ url('añadirInscripcion/'.$data->id) }}" class="link-light text-decoration-none">Cancelar inscripción</a></button>
                     </div>
             @else
                 <div class="col-6 mb-3" >
-                <button type="button" class="btn btn-primary"><a href="{{ url('añadirInscripcion/'.$data->id) }}" class="link-light">Inscribirse</a></button>
+                <button type="button" class="btn btn-primary"><a href="{{ url('añadirInscripcion/'.$data->id) }}" class="link-light text-decoration-none">Inscribirse</a></button>
                 </div>
             @endif
             </div>

@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea id="descripcion" class="form-control" readonly>{{ $oferta->descripcion }}</textarea>
+                            <textarea id="descripcion" class="form-control" name="descripcion" readonly>{{ $oferta->descripcion }}</textarea>
                         </div>
                         <div class="col-2 offset-10 botones">
                             <button type="button" id="editarDatosOferta" class="btn btn-warning w-100">Editar

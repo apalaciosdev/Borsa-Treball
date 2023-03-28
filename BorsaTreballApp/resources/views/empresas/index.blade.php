@@ -44,10 +44,7 @@
                             <input type="text" class="form-control" id="email" name="email"
                                 value="{{ $empresa->email }}" readonly>
                         </div>
-                        <div class="col-2 offset-8 botones">
-                            <a href="{{ route('crearOferta') }}" class="btn btn-success w-100">Nueva Oferta</a>
-                        </div>
-                        <div class="col-2 botones">
+                        <div class="col-2 offset-10 botones">
                             <button type="button" id="editarDatos" class="btn btn-warning w-100">Editar datos</button>
                             <button type="submit" class="d-none btn btn-primary w-100">Guardar datos</button>
                         </div>
