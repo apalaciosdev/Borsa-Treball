@@ -33,7 +33,7 @@ Route::get('/user/register', [UsuariosController::class,'register'])->name('regi
 
 Route::post('/user/añadirUsuario', [UsuariosController::class,'saveUser'])->name('añadirUsuario');
 
-Route::post('/user/userUpdate', [UsuariosController::class, 'update']);
+Route::post('/user', [UsuariosController::class, 'update']);
 
 Route::get('/user/oferta/{id}', [UsuariosController::class,'showOffer'])->name('mostrarOfertaUsu');
 // Para incribirte a la oferta
