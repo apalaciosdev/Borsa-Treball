@@ -66,7 +66,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">{{ $oferta->localidadOferta }}</h6>
                         <p class="card-text">Descripción del puesto de trabajo:<br>{{ $oferta->descripcion }}<br>Salario:
                             {{ $oferta->salario }}<br>Número de inscritos: {{ $oferta->numeroInscritos }}</p>
-                        <a href="{{ route('mostrarOfertaEmp', $oferta->id) }}" class="text-decoration-none">Editar oferta
+                        <a href="{{ route('mostrarOfertaEmp', $oferta->id) }}" class="text-decoration-none">Mostrar oferta
                             <i class="bi bi-arrow-right-circle"></i></a>
                     </div>
                 </div>
