@@ -89,6 +89,6 @@
     </div>
 @stop
 
-{{-- @section('scripts')
+@section('scripts')
     <script type="text/javascript" src={{ asset('js/empresas.js') }}></script>
-@stop --}}
+@stop
