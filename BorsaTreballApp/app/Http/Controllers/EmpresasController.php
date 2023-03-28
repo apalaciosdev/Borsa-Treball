@@ -116,6 +116,7 @@ class EmpresasController extends Controller
         } catch (\Exception $e) {
             echo "Error<br>";
             echo $e->getMessage();
+            return to_route('login');
         }
     }
 
